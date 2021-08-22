@@ -22,6 +22,8 @@ void HashFunctions_Cosine_Initialization(int L,int k){
 
 	no_lines = get_number_of_lines();
 
+	Hash_Function.clear();
+
 	Hash_Function.resize(dimension ,vector<double>(k));
 
 	cout << "I just resized the Hash Functions with size: " << k << " x " << dimension << endl;
@@ -30,11 +32,9 @@ void HashFunctions_Cosine_Initialization(int L,int k){
 
 	for(int i=0;i<k;i++){
 
-		Hash_Function[i].clear();
-
 		for(int j=0;j < dimension;j++){
 
-			Hash_Function[i].push_back(normal_distribution_generator() );
+			Hash_Function[i][dimension] = normal_distribution_generator();
 
 			// cout << "i: " << i << " j: " << j << " is " << (double) Hash_Function[i][j] << endl; /* DEBUG - Printing out elements of Hash_Function */
 
@@ -276,7 +276,7 @@ double calcute_cosine_distance(int input_line, int query_line){
 
 	// cout << "DIST: " << 1.0 - cosine_dist << endl;
 
-	return 1.0 - cosine_dist;
+	return cosine_dist;
 }
 
 void Cosine_Full_Search_NN(int query_line){
